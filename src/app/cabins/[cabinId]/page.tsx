@@ -94,7 +94,7 @@ export default async function Page({ params }: PageProps) {
                 <CabinImagesGallery images={images} name={name} />
             </Suspense>
 
-            <div className="mt-8 grid sm:gap-6 lg:grid-cols-[1.7fr_1fr]">
+            <div className="mt-6 grid sm:mt-8 sm:gap-6 lg:grid-cols-[1.7fr_1fr]">
                 <main className="@container/main space-y-10">
                     <Header
                         location={location}
@@ -159,7 +159,7 @@ function Header({
 
     return (
         <header className="space-y-4">
-            <h1 className="font-sans-serif text-2xl font-bold text-white sm:text-4xl">
+            <h1 className="font-sans-serif text-3xl font-bold text-white sm:text-4xl">
                 {name}
             </h1>
             <CabinInfoList

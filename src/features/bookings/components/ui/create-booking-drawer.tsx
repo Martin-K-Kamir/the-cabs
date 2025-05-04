@@ -39,7 +39,7 @@ export async function CreateBookingDrawer({
         <div
             {...props}
             className={cn(
-                "xs:py-6 fixed bottom-0 left-0 right-0 z-50 w-full rounded-t-2xl border border-zinc-800 bg-zinc-950 py-5",
+                "fixed bottom-0 left-0 right-0 z-50 w-full rounded-t-2xl border border-zinc-800 bg-zinc-950 py-8",
                 className,
             )}
         >
@@ -60,7 +60,7 @@ export async function CreateBookingDrawer({
                         </Button>
                     </DrawerTrigger>
 
-                    <DrawerContent showThumb className="py-12">
+                    <DrawerContent showThumb className="py-14">
                         <DrawerTitle className="sr-only">
                             Manage your booking
                         </DrawerTitle>
