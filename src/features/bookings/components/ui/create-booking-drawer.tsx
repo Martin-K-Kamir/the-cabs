@@ -12,14 +12,9 @@ import { cn } from "@/lib/utils";
 import { getCabinById, type CabinId } from "@/features/cabins";
 import { BookingPrice } from "@/features/bookings/components/ui/booking-price";
 import { CreateBookingForm } from "@/features/bookings/components/forms/create-booking-form";
-import { BookingPriceList } from "@/features/bookings/components/ui/booking-price-list";
+import { BookingPriceListPopover } from "@/features/bookings/components/ui/booking-price-list-popover";
 import { getBookingSettings } from "@/features/bookings/services";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover";
 
 export type BookingDrawerProps = {
     cabinId: CabinId;
@@ -91,31 +86,7 @@ export async function CreateBookingDrawer({
                                     }}
                                 />
 
-                                <Popover>
-                                    <PopoverTrigger asChild>
-                                        <Button
-                                            size="xl"
-                                            className="w-full"
-                                            variant="tertiary"
-                                        >
-                                            Show price list
-                                        </Button>
-                                    </PopoverTrigger>
-                                    <PopoverContent
-                                        inPortal={false}
-                                        className="w-(--radix-popover-trigger-width) bg-zinc-950"
-                                    >
-                                        <BookingPriceList
-                                            renderFallback={
-                                                <p className="text-pretty">
-                                                    Select stay duration, guests
-                                                    and breakfast options to see
-                                                    the price list.
-                                                </p>
-                                            }
-                                        />
-                                    </PopoverContent>
-                                </Popover>
+                                <BookingPriceListPopover />
                             </div>
                         </Wrapper>
                     </DrawerContent>

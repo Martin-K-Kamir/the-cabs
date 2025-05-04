@@ -8,6 +8,7 @@ export * from "./components/ui/bookings-preview-list";
 export * from "./components/ui/booking-preview-card";
 export * from "./components/ui/cancel-booking-alert-dialog";
 export * from "./components/ui/booking-success-dialog";
+export * from "./components/ui/booking-price-list-popover";
 
 export * from "./hooks";
 
