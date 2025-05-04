@@ -62,6 +62,9 @@ export function CreateBookingForm({
     popoverContentProps,
     ...formProps
 }: CreateBookingFormProps) {
+    const [isBreakfastPopoverOpen, setIsBreakfastPopOverOpen] = useState(false);
+    const [isGuestsPopoverOpen, setIsGuestsPopOverOpen] = useState(false);
+    const [isDatesPopoverOpen, setIsDatesPopOverOpen] = useState(false);
     const [isCreating, setIsCreating] = useState(false);
     const totalPrice = useBookingManagerStore(state => state.bookingTotalPrice);
     const breakfastPrice = useBookingManagerStore(
@@ -169,6 +172,7 @@ export function CreateBookingForm({
                         name="dates"
                         render={({ field }) => (
                             <FormPopover
+                                open={isDatesPopoverOpen}
                                 onOpenChange={isOpen => {
                                     if (!isOpen) {
                                         form.setValue(
@@ -176,6 +180,7 @@ export function CreateBookingForm({
                                             new Date(),
                                         );
                                     }
+                                    setIsDatesPopOverOpen(isOpen);
                                 }}
                             >
                                 <FormPopoverTrigger
@@ -290,7 +295,10 @@ export function CreateBookingForm({
                         control={form.control}
                         name="guests"
                         render={({ field }) => (
-                            <FormPopover>
+                            <FormPopover
+                                open={isGuestsPopoverOpen}
+                                onOpenChange={setIsGuestsPopOverOpen}
+                            >
                                 <FormPopoverTrigger
                                     size="full"
                                     variant="outline"
@@ -363,7 +371,10 @@ export function CreateBookingForm({
                         control={form.control}
                         name="isBreakfast"
                         render={({ field }) => (
-                            <FormPopover>
+                            <FormPopover
+                                open={isBreakfastPopoverOpen}
+                                onOpenChange={setIsBreakfastPopOverOpen}
+                            >
                                 <FormPopoverTrigger
                                     size="full"
                                     variant="outline"
