@@ -209,7 +209,7 @@ export function CreateBookingForm({
                                     className={cn(
                                         (availableDatesQuery.error ||
                                             availableDatesQuery.isPending) &&
-                                            "w-126",
+                                            "w-(--radix-popover-trigger-width) lg:w-126",
                                         availableDatesQuery.isSuccess &&
                                             "w-(--radix-popover-trigger-width) max-w-full space-y-6 lg:w-auto lg:space-y-4",
                                         classNamePopoverContent,

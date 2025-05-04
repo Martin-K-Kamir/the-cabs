@@ -60,7 +60,7 @@ export async function CreateBookingDrawer({
                         </Button>
                     </DrawerTrigger>
 
-                    <DrawerContent showThumb className="py-16">
+                    <DrawerContent showThumb className="py-14">
                         <DrawerTitle className="sr-only">
                             Manage your booking
                         </DrawerTitle>
@@ -102,7 +102,7 @@ export async function CreateBookingDrawer({
                                         </Button>
                                     </PopoverTrigger>
                                     <PopoverContent
-                                        inPortal={true}
+                                        inPortal={false}
                                         className="w-(--radix-popover-trigger-width) bg-zinc-950"
                                     >
                                         <BookingPriceList

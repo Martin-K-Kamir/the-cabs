@@ -58,7 +58,7 @@ export function CabinsSearchDrawer({
                     <SearchIcon className="size-4" />
                 </Button>
             </DrawerTrigger>
-            <DrawerContent showThumb className="py-16">
+            <DrawerContent showThumb className="py-14">
                 <DrawerTitle className="sr-only">Search for cabins</DrawerTitle>
                 <DrawerDescription className="sr-only">
                     Search for cabins in your desired location, dates, and
@@ -106,6 +106,8 @@ function SearchDatesBlock({
     value,
     onChange,
 }: SearchItem<Partial<DateRange> | undefined>) {
+    const [open, setOpen] = useState(false);
+
     const isSm = useMediaQuery("(min-width: 40rem)", {
         defaultValue: false,
         initializeWithValue: false,
@@ -127,6 +129,8 @@ function SearchDatesBlock({
                 side: "top",
                 inPortal: false,
             }}
+            open={open}
+            onOpenChange={setOpen}
         >
             <p className="max-w-10/12 text-pretty font-semibold">
                 When are you going?
@@ -144,6 +148,8 @@ function SearchDatesBlock({
 }
 
 function SearchGuestsBlock({ value, onChange }: SearchItem<Guests>) {
+    const [open, setOpen] = useState(false);
+
     return (
         <SimplePopoverBlock
             label="Guests"
@@ -158,6 +164,8 @@ function SearchGuestsBlock({ value, onChange }: SearchItem<Guests>) {
                 side: "top",
                 inPortal: false,
             }}
+            open={open}
+            onOpenChange={setOpen}
         >
             <p className="max-w-10/12 text-pretty font-semibold">
                 How many guests will be staying?
