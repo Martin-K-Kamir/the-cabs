@@ -22,7 +22,9 @@ import {
 import { TextableBlock } from "@/components/ui/textable-block";
 import { Switch } from "@/components/ui/switch";
 import {
+    AuthenticationError,
     cn,
+    DateRangeError,
     formatCompactDateRange,
     formatCurrency,
     formatGuestsSummary,
@@ -127,12 +129,27 @@ export function CreateBookingForm({
                 exact: false,
             });
         } catch (error) {
+            if (error instanceof AuthenticationError) {
+                form.setError("root", {
+                    type: "manual",
+                    message:
+                        "You must be logged in to create a new reservation.",
+                });
+                return;
+            }
+
+            if (error instanceof DateRangeError) {
+                form.setError("root", {
+                    type: "manual",
+                    message: "The selected date range is already reserved.",
+                });
+                return;
+            }
+
             form.setError("root", {
                 type: "manual",
                 message:
-                    error instanceof Error
-                        ? error.message
-                        : "Internal error. Please try again later.",
+                    "Reservation creation failed. Please try again later. If the problem persists, please contact support.",
             });
         } finally {
             setIsCreating(false);
@@ -182,6 +199,7 @@ export function CreateBookingForm({
                                     />
                                 </FormPopoverTrigger>
                                 <FormPopoverContent
+                                    inPortal={false}
                                     {...popoverContentProps}
                                     collisionPadding={
                                         popoverContentProps?.collisionPadding ??
@@ -283,6 +301,7 @@ export function CreateBookingForm({
                                     />
                                 </FormPopoverTrigger>
                                 <FormPopoverContent
+                                    inPortal={false}
                                     {...popoverContentProps}
                                     collisionPadding={
                                         popoverContentProps?.collisionPadding ??
@@ -350,6 +369,7 @@ export function CreateBookingForm({
                                     />
                                 </FormPopoverTrigger>
                                 <FormPopoverContent
+                                    inPortal={false}
                                     {...popoverContentProps}
                                     collisionPadding={
                                         popoverContentProps?.collisionPadding ??

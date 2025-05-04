@@ -125,6 +125,7 @@ function SearchDatesBlock({
             }}
             contentProps={{
                 side: "top",
+                inPortal: false,
             }}
         >
             <Calendar
@@ -152,6 +153,7 @@ function SearchGuestsBlock({ value, onChange }: SearchItem<Guests>) {
             }}
             contentProps={{
                 side: "top",
+                inPortal: false,
             }}
         >
             <ItemsCounter

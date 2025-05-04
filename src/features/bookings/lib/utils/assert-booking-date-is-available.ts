@@ -1,6 +1,7 @@
 import { CabinId } from "@/features/cabins";
 import { areIntervalsOverlapping } from "date-fns";
 import { getUnavailableBookingsDates } from "@/features/bookings/services/get-unavailable-bookings-dates";
+import { DateRangeError } from "@/lib/utils/errors/dates";
 
 export async function assertBookingDateIsAvailable({
     cabinId,
@@ -31,6 +32,6 @@ export async function assertBookingDateIsAvailable({
     );
 
     if (conflict) {
-        throw new Error(errorMessage);
+        throw new DateRangeError(errorMessage);
     }
 }

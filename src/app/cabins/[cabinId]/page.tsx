@@ -88,7 +88,10 @@ export default async function Page({ params }: PageProps) {
         await getCabinById(cabinId);
 
     return (
-        <Wrapper className="pb-30 lg:pt-30 h-full flex-1 pt-24" as="article">
+        <Wrapper
+            className="pb-42 lg:pt-30 lg:pb-30 h-full flex-1 pt-24"
+            as="article"
+        >
             <ImageBackdrop image={images[0]} />
             <Suspense>
                 <CabinImagesGallery images={images} name={name} />
