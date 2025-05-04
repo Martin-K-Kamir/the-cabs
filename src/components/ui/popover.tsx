@@ -48,6 +48,32 @@ export function PopoverContent({
     );
 }
 
+export function PopoverCloseButton({
+    children,
+    className,
+    size = "icon",
+    variant = "ghost",
+    asChild = false,
+    ...props
+}: React.ComponentProps<typeof PopoverPrimitive.Close> & {
+    size?: React.ComponentProps<typeof Button>["size"];
+    variant?: React.ComponentProps<typeof Button>["variant"];
+}) {
+    return (
+        <PopoverPrimitive.Close data-slot="popover-close" asChild {...props}>
+            <Button
+                type="button"
+                variant={variant}
+                size={size}
+                className={className}
+                asChild={asChild}
+            >
+                {children ?? <XIcon />}
+            </Button>
+        </PopoverPrimitive.Close>
+    );
+}
+
 export function PopoverAnchor({
     ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Anchor>) {
@@ -137,6 +163,7 @@ export function SimplePopoverBlock({
                 }}
                 className={classNameContent}
             >
+                <PopoverCloseButton className="absolute right-2 top-2" />
                 {children}
             </PopoverContent>
         </Popover>

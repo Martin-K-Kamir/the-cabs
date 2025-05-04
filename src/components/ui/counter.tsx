@@ -190,6 +190,7 @@ export function CounterIncrementButton({
 
     return (
         <Button
+            type="button"
             disabled={
                 (groupCount && groupMax && groupCount >= groupMax) ||
                 count >= max
@@ -224,6 +225,7 @@ export function CounterDecrementButton({
 
     return (
         <Button
+            type="button"
             disabled={
                 (groupCount && groupMin && groupCount <= groupMin) ||
                 count <= min

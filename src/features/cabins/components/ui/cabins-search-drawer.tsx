@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     CalendarDaysIcon,
     MapPinIcon,
@@ -58,7 +58,7 @@ export function CabinsSearchDrawer({
                     <SearchIcon className="size-4" />
                 </Button>
             </DrawerTrigger>
-            <DrawerContent showThumb className="py-12">
+            <DrawerContent showThumb className="py-16">
                 <DrawerTitle className="sr-only">Search for cabins</DrawerTitle>
                 <DrawerDescription className="sr-only">
                     Search for cabins in your desired location, dates, and
@@ -118,7 +118,7 @@ function SearchDatesBlock({
                 fallback: "Whenever",
             })}
             icon={<CalendarDaysIcon />}
-            classNameContent="bg-zinc-950 w-(--radix-popover-trigger-width)"
+            classNameContent="bg-zinc-950 w-(--radix-popover-trigger-width) space-y-4"
             showReset={value?.from !== undefined || value?.to !== undefined}
             onReset={() => {
                 onChange(undefined);
@@ -128,6 +128,9 @@ function SearchDatesBlock({
                 inPortal: false,
             }}
         >
+            <p className="max-w-10/12 text-pretty font-semibold">
+                When are you going?
+            </p>
             <Calendar
                 initialFocus
                 mode="range"
@@ -146,7 +149,7 @@ function SearchGuestsBlock({ value, onChange }: SearchItem<Guests>) {
             label="Guests"
             value={formatGuestsSummary(value.adults, value.children, "Whoever")}
             icon={<UsersIcon />}
-            classNameContent="bg-zinc-950 w-(--radix-popover-trigger-width)"
+            classNameContent="bg-zinc-950 w-(--radix-popover-trigger-width) space-y-4"
             showReset={value.adults > 0 || value.children > 0}
             onReset={() => {
                 onChange({ adults: 0, children: 0 });
@@ -156,6 +159,9 @@ function SearchGuestsBlock({ value, onChange }: SearchItem<Guests>) {
                 inPortal: false,
             }}
         >
+            <p className="max-w-10/12 text-pretty font-semibold">
+                How many guests will be staying?
+            </p>
             <ItemsCounter
                 items={tempGuests}
                 className="space-y-4"
@@ -169,13 +175,18 @@ function SearchGuestsBlock({ value, onChange }: SearchItem<Guests>) {
 
 function SearchLocationBlock({ value, onChange }: SearchItem<string>) {
     const [open, setOpen] = useState(false);
+    const [queryLocation, setQueryLocation] = useState<string>(value);
+
+    useEffect(() => {
+        onChange(queryLocation);
+    }, [queryLocation]);
 
     return (
         <SimplePopoverBlock
             label="Location"
             value={value.length > 0 ? value : "Wherever"}
             icon={<MapPinIcon />}
-            classNameContent="bg-zinc-950 w-(--radix-popover-trigger-width)"
+            classNameContent="bg-zinc-950 w-(--radix-popover-trigger-width) space-y-4"
             classNameValue="capitalize"
             showReset={value.length > 0}
             onReset={() => {
@@ -188,13 +199,17 @@ function SearchLocationBlock({ value, onChange }: SearchItem<string>) {
             open={open}
             onOpenChange={setOpen}
         >
+            <p className="max-w-10/12 text-pretty font-semibold">
+                Start typing to search for a location
+            </p>
             <Autocomplete
-                maxOptions={5}
+                maxOptions={3}
                 options={tempLocations}
                 onSelect={value => {
                     onChange(value);
                     setOpen(false);
                 }}
+                onQueryChange={setQueryLocation}
             >
                 <AutocompleteOptions
                     defaultOptionIcon={<MapPinIcon />}

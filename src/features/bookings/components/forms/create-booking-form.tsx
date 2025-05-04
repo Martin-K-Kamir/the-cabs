@@ -39,6 +39,7 @@ import {
 import { useBookingForm } from "@/features/bookings/hooks/use-booking-form";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { PopoverCloseButton } from "@/components/ui/popover";
 
 export type CreateBookingFormProps = {
     className?: string;
@@ -208,15 +209,20 @@ export function CreateBookingForm({
                                     className={cn(
                                         (availableDatesQuery.error ||
                                             availableDatesQuery.isPending) &&
-                                            "w-114",
+                                            "w-126",
                                         availableDatesQuery.isSuccess &&
-                                            "w-(--radix-popover-trigger-width) max-w-full space-y-4 lg:w-auto",
+                                            "w-(--radix-popover-trigger-width) max-w-full space-y-6 lg:w-auto lg:space-y-4",
                                         classNamePopoverContent,
                                     )}
                                     align={
                                         popoverContentProps?.align ?? "center"
                                     }
                                 >
+                                    <p className="max-w-10/12 text-pretty font-semibold lg:hidden">
+                                        Select your stay duration
+                                    </p>
+                                    <PopoverCloseButton className="absolute right-2 top-2 lg:hidden" />
+
                                     {availableDatesQuery.error && (
                                         <div className="min-h-74 flex w-full flex-col items-center justify-center space-y-2">
                                             <TriangleAlertIcon className="size-6 text-rose-600" />{" "}
@@ -308,13 +314,18 @@ export function CreateBookingForm({
                                         20
                                     }
                                     className={cn(
-                                        "w-(--radix-popover-trigger-width) space-y-4",
+                                        "w-(--radix-popover-trigger-width) space-y-6 lg:space-y-4",
                                         classNamePopoverContent,
                                     )}
                                     align={
                                         popoverContentProps?.align ?? "center"
                                     }
                                 >
+                                    <p className="max-w-10/12 text-pretty font-semibold lg:hidden">
+                                        Select the number of guests for your
+                                        stay
+                                    </p>
+                                    <PopoverCloseButton className="absolute right-2 top-2 lg:hidden" />
                                     <ItemsCounter
                                         items={[
                                             {
@@ -376,13 +387,18 @@ export function CreateBookingForm({
                                         20
                                     }
                                     className={cn(
-                                        "w-(--radix-popover-trigger-width) space-y-2",
+                                        "w-(--radix-popover-trigger-width) space-y-4 lg:space-y-2",
                                         classNamePopoverContent,
                                     )}
                                     align={
                                         popoverContentProps?.align ?? "center"
                                     }
                                 >
+                                    <p className="max-w-10/12 text-pretty font-semibold lg:hidden">
+                                        Select to add breakfast to your stay
+                                    </p>
+                                    <PopoverCloseButton className="absolute right-2 top-2 lg:hidden" />
+
                                     <div className="flex items-center justify-between">
                                         <p className="text-base font-semibold">
                                             Breakfast for{" "}
