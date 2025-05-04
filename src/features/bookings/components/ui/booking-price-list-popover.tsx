@@ -1,4 +1,5 @@
-'use client";';
+"use client";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
     Popover,
@@ -6,7 +7,6 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { BookingPriceList } from "@/features/bookings/components/ui/booking-price-list";
-import { useState } from "react";
 
 export function BookingPriceListPopover({
     children,
