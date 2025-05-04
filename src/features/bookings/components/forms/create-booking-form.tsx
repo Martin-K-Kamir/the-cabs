@@ -218,7 +218,7 @@ export function CreateBookingForm({
                                         popoverContentProps?.align ?? "center"
                                     }
                                 >
-                                    <p className="max-w-10/12 text-pretty font-semibold lg:hidden">
+                                    <p className="max-w-10/12 text-pretty leading-snug lg:hidden">
                                         Select your stay duration
                                     </p>
                                     <PopoverCloseButton className="absolute right-2 top-2 lg:hidden" />
@@ -321,7 +321,7 @@ export function CreateBookingForm({
                                         popoverContentProps?.align ?? "center"
                                     }
                                 >
-                                    <p className="max-w-10/12 text-pretty font-semibold lg:hidden">
+                                    <p className="max-w-10/12 text-pretty leading-snug lg:hidden">
                                         Select the number of guests for your
                                         stay
                                     </p>
@@ -394,7 +394,7 @@ export function CreateBookingForm({
                                         popoverContentProps?.align ?? "center"
                                     }
                                 >
-                                    <p className="max-w-10/12 text-pretty font-semibold lg:hidden">
+                                    <p className="max-w-10/12 text-pretty leading-snug lg:hidden">
                                         Select to add breakfast to your stay
                                     </p>
                                     <PopoverCloseButton className="absolute right-2 top-2 lg:hidden" />
