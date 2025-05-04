@@ -39,7 +39,7 @@ export async function CreateBookingDrawer({
         <div
             {...props}
             className={cn(
-                "fixed bottom-0 left-0 right-0 z-50 w-full rounded-t-2xl border border-zinc-800 bg-zinc-950 py-8",
+                "fixed bottom-0 left-0 right-0 z-50 w-full rounded-t-2xl border border-zinc-800 bg-zinc-950 py-6",
                 className,
             )}
         >
