@@ -57,10 +57,23 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps) {
     const { cabinId } = await params;
-    const { name } = await getCabinById(cabinId);
+    const { name, images } = await getCabinById(cabinId);
 
     return {
         title: name,
+        openGraph: {
+            images: [
+                {
+                    url: images[0],
+                    width: 1200,
+                    height: 630,
+                    alt: name,
+                },
+            ],
+        },
+        twitter: {
+            images: [images[0]],
+        },
     } satisfies Metadata;
 }
 
