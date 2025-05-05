@@ -120,7 +120,7 @@ function SearchDatesBlock({
                 fallback: "Whenever",
             })}
             icon={<CalendarDaysIcon />}
-            classNameContent="bg-zinc-950 w-(--radix-popover-trigger-width) space-y-5"
+            classNameContent="bg-zinc-950 w-(--radix-popover-trigger-width) space-y-6"
             showReset={value?.from !== undefined || value?.to !== undefined}
             onReset={() => {
                 onChange(undefined);
@@ -132,7 +132,7 @@ function SearchDatesBlock({
             open={open}
             onOpenChange={setOpen}
         >
-            <p className="max-w-10/12 text-pretty leading-snug">
+            <p className="max-w-10/12 text-pretty leading-none">
                 When are you going?
             </p>
             <Calendar
@@ -155,7 +155,7 @@ function SearchGuestsBlock({ value, onChange }: SearchItem<Guests>) {
             label="Guests"
             value={formatGuestsSummary(value.adults, value.children, "Whoever")}
             icon={<UsersIcon />}
-            classNameContent="bg-zinc-950 w-(--radix-popover-trigger-width) space-y-5"
+            classNameContent="bg-zinc-950 w-(--radix-popover-trigger-width) space-y-6"
             showReset={value.adults > 0 || value.children > 0}
             onReset={() => {
                 onChange({ adults: 0, children: 0 });
@@ -167,8 +167,8 @@ function SearchGuestsBlock({ value, onChange }: SearchItem<Guests>) {
             open={open}
             onOpenChange={setOpen}
         >
-            <p className="max-w-10/12 text-pretty leading-snug">
-                How many guests will be staying?
+            <p className="max-w-10/12 text-pretty leading-none">
+                Who's coming?
             </p>
             <ItemsCounter
                 items={tempGuests}
@@ -194,7 +194,7 @@ function SearchLocationBlock({ value, onChange }: SearchItem<string>) {
             label="Location"
             value={value.length > 0 ? value : "Wherever"}
             icon={<MapPinIcon />}
-            classNameContent="bg-zinc-950 w-(--radix-popover-trigger-width) space-y-5"
+            classNameContent="bg-zinc-950 w-(--radix-popover-trigger-width) space-y-6"
             classNameValue="capitalize"
             showReset={value.length > 0}
             onReset={() => {
@@ -207,8 +207,8 @@ function SearchLocationBlock({ value, onChange }: SearchItem<string>) {
             open={open}
             onOpenChange={setOpen}
         >
-            <p className="max-w-10/12 text-pretty leading-snug">
-                Start typing to search for a location
+            <p className="max-w-10/12 text-pretty leading-none">
+                Where are you going?
             </p>
             <Autocomplete
                 maxOptions={3}

@@ -133,7 +133,10 @@ export function CreateBookingForm({
                 exact: false,
             });
         } catch (error) {
-            if (error instanceof AuthenticationError) {
+            console.log(error);
+            console.log(typeof error);
+            console.dir(error);
+            if (error instanceof Error && error.name === "Authentication") {
                 form.setError("root", {
                     type: "manual",
                     message:
@@ -216,14 +219,15 @@ export function CreateBookingForm({
                                             availableDatesQuery.isPending) &&
                                             "w-(--radix-popover-trigger-width) lg:w-126",
                                         availableDatesQuery.isSuccess &&
-                                            "w-(--radix-popover-trigger-width) max-w-full space-y-6 lg:w-auto lg:space-y-4",
+                                            "w-(--radix-popover-trigger-width) max-w-full lg:w-auto",
+                                        "space-y-6 lg:space-y-4",
                                         classNamePopoverContent,
                                     )}
                                     align={
                                         popoverContentProps?.align ?? "center"
                                     }
                                 >
-                                    <p className="max-w-10/12 text-pretty leading-snug lg:hidden">
+                                    <p className="max-w-10/12 text-pretty leading-none lg:hidden">
                                         Select your stay duration
                                     </p>
                                     <PopoverCloseButton className="absolute right-2 top-2 lg:hidden" />
@@ -329,11 +333,12 @@ export function CreateBookingForm({
                                         popoverContentProps?.align ?? "center"
                                     }
                                 >
-                                    <p className="max-w-10/12 text-pretty leading-snug lg:hidden">
-                                        Select the number of guests for your
-                                        stay
-                                    </p>
                                     <PopoverCloseButton className="absolute right-2 top-2 lg:hidden" />
+
+                                    <p className="max-w-10/12 text-pretty leading-none lg:hidden">
+                                        Select number of guests
+                                    </p>
+
                                     <ItemsCounter
                                         items={[
                                             {
@@ -405,10 +410,11 @@ export function CreateBookingForm({
                                         popoverContentProps?.align ?? "center"
                                     }
                                 >
-                                    <p className="max-w-10/12 text-pretty leading-snug lg:hidden">
-                                        Select to add breakfast to your stay
-                                    </p>
                                     <PopoverCloseButton className="absolute right-2 top-2 lg:hidden" />
+
+                                    <p className="max-w-10/12 text-pretty leading-none lg:hidden">
+                                        Add breakfast to your stay
+                                    </p>
 
                                     <div className="flex items-center justify-between">
                                         <p className="text-base font-semibold">

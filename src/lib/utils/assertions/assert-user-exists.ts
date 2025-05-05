@@ -6,6 +6,8 @@ export function assertUserExists(
     errorMessage: string = "You must be logged in to view this page. Please log in and try again.",
 ): asserts session is Session {
     if (!session?.user) {
-        throw new AuthenticationError(errorMessage);
+        const error = new Error(errorMessage);
+        error.name = "Authentication";
+        throw error;
     }
 }
