@@ -1,18 +1,15 @@
 import { CabinId } from "@/features/cabins";
 import { areIntervalsOverlapping } from "date-fns";
 import { getUnavailableBookingsDates } from "@/features/bookings/services/get-unavailable-bookings-dates";
-import { DateRangeError } from "@/lib/utils/errors/dates";
 
-export async function assertBookingDateIsAvailable({
+export async function validateBookingDateAvailability({
     cabinId,
     startDate,
     endDate,
-    errorMessage = "The selected date range is already booked.",
 }: {
     cabinId: CabinId;
     startDate: Date;
     endDate: Date;
-    errorMessage?: string;
 }) {
     const monthToCheck = startDate;
 
@@ -31,7 +28,5 @@ export async function assertBookingDateIsAvailable({
         ),
     );
 
-    if (conflict) {
-        throw new DateRangeError(errorMessage);
-    }
+    return !conflict;
 }

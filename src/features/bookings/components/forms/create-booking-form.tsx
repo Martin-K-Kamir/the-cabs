@@ -23,7 +23,6 @@ import { TextableBlock } from "@/components/ui/textable-block";
 import { Switch } from "@/components/ui/switch";
 import {
     cn,
-    DateRangeError,
     formatCompactDateRange,
     formatCurrency,
     formatGuestsSummary,
@@ -88,6 +87,14 @@ export function CreateBookingForm({
     async function handleSubmit(values: z.infer<typeof createBookingSchema>) {
         setIsCreating(true);
 
+        // if (session === null || session?.user === undefined) {
+        //     form.setError("root", {
+        //         type: "manual",
+        //         message: "You must be logged in to create a new reservation.",
+        //     });
+        //     return;
+        // }
+
         if (!totalPrice || totalPrice <= 0 || !cabinPrice || cabinPrice <= 0) {
             form.setError("root", {
                 type: "manual",
@@ -107,6 +114,10 @@ export function CreateBookingForm({
                 numOfGuests: values.guests.adults + values.guests.children,
                 isBreakfast: values.isBreakfast,
             });
+
+            if (newBooking instanceof Error) {
+                throw newBooking;
+            }
 
             setBookingSuccessDialogOpen({
                 open: true,
@@ -132,22 +143,10 @@ export function CreateBookingForm({
                 exact: false,
             });
         } catch (error) {
-            console.log(error);
-            console.log(typeof error);
-            console.dir(error);
-            if (error instanceof Error && error.name === "Authentication") {
+            if (error instanceof Error) {
                 form.setError("root", {
                     type: "manual",
-                    message:
-                        "You must be logged in to create a new reservation.",
-                });
-                return;
-            }
-
-            if (error instanceof DateRangeError) {
-                form.setError("root", {
-                    type: "manual",
-                    message: "The selected date range is already reserved.",
+                    message: error.message,
                 });
                 return;
             }
