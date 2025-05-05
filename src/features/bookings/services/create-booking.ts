@@ -1,10 +1,11 @@
 "use server";
 import {
-    validateBookingDateAvailability,
+    assertBookingDateIsAvailable,
     type NewBookingRaw,
     type NewBooking,
     type BookingItem,
 } from "@/features/bookings";
+import { assertUserExists } from "@/lib/utils";
 import { auth } from "@/services/auth";
 import { supabase } from "@/services/supabase";
 import { endOfDay } from "date-fns";
@@ -12,22 +13,19 @@ import { revalidatePath } from "next/cache";
 
 export async function createBooking(
     newBookingData: NewBookingRaw,
-): Promise<BookingItem | Error> {
+): Promise<BookingItem> {
     const session = await auth();
+    assertUserExists(
+        session,
+        "You must be logged in to create a new reservation.",
+    );
 
-    if (!session?.user) {
-        return new Error("You must be logged in to create a reservation.");
-    }
-
-    const isBookingDateAvailable = await validateBookingDateAvailability({
+    await assertBookingDateIsAvailable({
         cabinId: newBookingData.cabinId,
         startDate: newBookingData.startDate,
         endDate: newBookingData.endDate,
+        errorMessage: "The selected date range is already reserved.",
     });
-
-    if (!isBookingDateAvailable) {
-        return new Error("The selected date range is already reserved.");
-    }
 
     const newBooking = {
         ...newBookingData,

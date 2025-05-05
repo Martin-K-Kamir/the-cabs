@@ -9,6 +9,7 @@ import {
     BookingPriceList,
 } from "@/features/bookings";
 import { Skeleton } from "@/components/ui/skeleton";
+import { auth } from "@/services/auth";
 
 export type CreateBookingCardProps = Omit<
     React.ComponentProps<typeof Card>,
@@ -22,9 +23,10 @@ export async function CreateBookingCard({
     cabinId,
     ...props
 }: CreateBookingCardProps) {
-    const [cabin, settings] = await Promise.all([
+    const [cabin, settings, session] = await Promise.all([
         getCabinById(cabinId),
         getBookingSettings(),
+        auth(),
     ]);
 
     return (
@@ -39,6 +41,7 @@ export async function CreateBookingCard({
                 maxNumOfGuests={cabin.maxNumOfGuests}
                 minNumOfNights={settings.minNights}
                 maxNumOfNights={settings.maxNights}
+                session={session}
             />
             <BookingPriceList />
         </Card>

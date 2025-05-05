@@ -38,6 +38,7 @@ import { useBookingForm } from "@/features/bookings/hooks/use-booking-form";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { PopoverCloseButton } from "@/components/ui/popover";
+import { Session } from "next-auth";
 
 export type CreateBookingFormProps = {
     className?: string;
@@ -47,6 +48,7 @@ export type CreateBookingFormProps = {
         React.ComponentProps<typeof FormPopoverContent>,
         "className"
     >;
+    session?: Session | null;
     onCreateSuccess?: () => void;
     onCreateError?: () => void;
     onCreate?: (data: z.infer<typeof createBookingSchema>) => boolean;
@@ -54,6 +56,7 @@ export type CreateBookingFormProps = {
 
 export function CreateBookingForm({
     cabinId,
+    session,
     className,
     classNamePopoverContent,
     classNameFields,
@@ -85,15 +88,13 @@ export function CreateBookingForm({
     });
 
     async function handleSubmit(values: z.infer<typeof createBookingSchema>) {
-        setIsCreating(true);
-
-        // if (session === null || session?.user === undefined) {
-        //     form.setError("root", {
-        //         type: "manual",
-        //         message: "You must be logged in to create a new reservation.",
-        //     });
-        //     return;
-        // }
+        if (session === null || session?.user === undefined) {
+            form.setError("root", {
+                type: "manual",
+                message: "You must be logged in to create a new reservation.",
+            });
+            return;
+        }
 
         if (!totalPrice || totalPrice <= 0 || !cabinPrice || cabinPrice <= 0) {
             form.setError("root", {
@@ -104,6 +105,8 @@ export function CreateBookingForm({
         }
 
         try {
+            setIsCreating(true);
+
             const newBooking = await createBooking({
                 cabinId,
                 breakfastPrice: breakfastPrice ?? 0,
@@ -114,10 +117,6 @@ export function CreateBookingForm({
                 numOfGuests: values.guests.adults + values.guests.children,
                 isBreakfast: values.isBreakfast,
             });
-
-            if (newBooking instanceof Error) {
-                throw newBooking;
-            }
 
             setBookingSuccessDialogOpen({
                 open: true,
@@ -142,19 +141,10 @@ export function CreateBookingForm({
                 queryKey: ["bookingDates"],
                 exact: false,
             });
-        } catch (error) {
-            if (error instanceof Error) {
-                form.setError("root", {
-                    type: "manual",
-                    message: error.message,
-                });
-                return;
-            }
-
+        } catch {
             form.setError("root", {
                 type: "manual",
-                message:
-                    "Reservation creation failed. Please try again later. If the problem persists, please contact support.",
+                message: "The selected date range is already reserved.",
             });
         } finally {
             setIsCreating(false);

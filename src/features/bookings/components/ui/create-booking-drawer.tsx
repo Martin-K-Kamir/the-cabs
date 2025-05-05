@@ -15,6 +15,7 @@ import { CreateBookingForm } from "@/features/bookings/components/forms/create-b
 import { BookingPriceListPopover } from "@/features/bookings/components/ui/booking-price-list-popover";
 import { getBookingSettings } from "@/features/bookings/services";
 import { Skeleton } from "@/components/ui/skeleton";
+import { auth } from "@/services/auth";
 
 export type BookingDrawerProps = {
     cabinId: CabinId;
@@ -25,9 +26,10 @@ export async function CreateBookingDrawer({
     className,
     ...props
 }: BookingDrawerProps) {
-    const [cabin, settings] = await Promise.all([
+    const [cabin, settings, session] = await Promise.all([
         getCabinById(cabinId),
         getBookingSettings(),
+        auth(),
     ]);
 
     return (
@@ -73,6 +75,7 @@ export async function CreateBookingDrawer({
                                 <CreateBookingForm
                                     cabinId={cabinId}
                                     cabinPrice={cabin.price}
+                                    session={session}
                                     cabinDiscount={cabin.discount}
                                     breakfastPrice={settings.breakfastPrice}
                                     minNumOfGuests={1}
