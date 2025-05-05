@@ -22,7 +22,6 @@ import {
 import { TextableBlock } from "@/components/ui/textable-block";
 import { Switch } from "@/components/ui/switch";
 import {
-    AuthenticationError,
     cn,
     DateRangeError,
     formatCompactDateRange,

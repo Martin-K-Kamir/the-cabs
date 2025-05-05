@@ -168,7 +168,7 @@ function SearchGuestsBlock({ value, onChange }: SearchItem<Guests>) {
             onOpenChange={setOpen}
         >
             <p className="max-w-10/12 text-pretty leading-none">
-                Who's coming?
+                Who&apos;s coming?
             </p>
             <ItemsCounter
                 items={tempGuests}

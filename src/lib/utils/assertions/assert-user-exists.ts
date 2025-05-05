@@ -1,5 +1,4 @@
 import { type Session } from "next-auth";
-import { AuthenticationError } from "@/lib/utils/errors/auth";
 
 export function assertUserExists(
     session: Session | null,
