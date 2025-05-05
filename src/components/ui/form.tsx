@@ -540,7 +540,7 @@ function FormImageUploadPreview({
 
         return files;
     });
-    const isDragable = isFileArray(files) && files.length > 1;
+    const isDraggable = files.length > 1;
 
     useEffect(() => {
         setImagesOrder(files);
@@ -568,7 +568,7 @@ function FormImageUploadPreview({
         index: number,
         image: File,
     ) {
-        if (!isDragable) return;
+        if (!isDraggable) return;
 
         setDraggedIndex(index);
         event.dataTransfer.effectAllowed = "move";
@@ -579,7 +579,7 @@ function FormImageUploadPreview({
         event: React.DragEvent<HTMLDivElement>,
         index: number,
     ) {
-        if (!isDragable) return;
+        if (!isDraggable) return;
 
         event.preventDefault();
 
@@ -594,7 +594,7 @@ function FormImageUploadPreview({
     }
 
     function handleDrop() {
-        if (!isDragable) return;
+        if (!isDraggable) return;
 
         setDraggedIndex(null);
         setFiles(imagesOrder);
@@ -602,7 +602,7 @@ function FormImageUploadPreview({
     }
 
     function handleDragEnd() {
-        if (!isDragable) return;
+        if (!isDraggable) return;
 
         setDraggedIndex(null);
     }
@@ -630,7 +630,7 @@ function FormImageUploadPreview({
                     onDragEnd={handleDragEnd}
                     onDrop={handleDrop}
                     onRemoveFile={handleRemoveFile}
-                    isDragable={isDragable}
+                    isDraggable={isDraggable}
                     lazy={lazy}
                 />
             ))}
@@ -643,7 +643,7 @@ type FormImagePreviewItemProps = {
     draggedIndex: number | null;
     image: File;
     className?: string;
-    isDragable?: boolean;
+    isDraggable?: boolean;
     lazy?: boolean;
     onDragStart: (event: React.DragEvent<HTMLDivElement>) => void;
     onDragOver: (event: React.DragEvent<HTMLDivElement>) => void;
@@ -655,7 +655,7 @@ type FormImagePreviewItemProps = {
 function FormImagePreviewItem({
     image,
     index,
-    isDragable = true,
+    isDraggable = true,
     lazy,
     draggedIndex,
     className,
@@ -678,7 +678,7 @@ function FormImagePreviewItem({
                 "group relative rounded-xl border border-dashed border-transparent transition-all duration-200",
                 draggedIndex === index && "border-zinc-700 bg-zinc-900",
             )}
-            draggable={isDragable}
+            draggable={isDraggable}
             onDragStart={onDragStart}
             onDragOver={onDragOver}
             onDragEnd={onDragEnd}
@@ -695,10 +695,10 @@ function FormImagePreviewItem({
                     className={cn(
                         "h-full w-full rounded-xl object-cover transition-[opacity,filter]",
                         draggedIndex === index && "opacity-0",
-                        isDragable &&
+                        isDraggable &&
                             draggedIndex === null &&
                             "hover:brightness-80",
-                        isDragable && "cursor-move",
+                        isDraggable && "cursor-move",
                         className,
                     )}
                     classNameLoader={className}
@@ -718,10 +718,10 @@ function FormImagePreviewItem({
                     className={cn(
                         "h-full w-full rounded-xl object-cover transition-[opacity,filter]",
                         draggedIndex === index && "opacity-0",
-                        isDragable &&
+                        isDraggable &&
                             draggedIndex === null &&
                             "hover:brightness-80",
-                        isDragable && "cursor-move",
+                        isDraggable && "cursor-move",
                         className,
                     )}
                     onError={() => {
@@ -754,7 +754,7 @@ function FormImagePreviewItem({
                     type="button"
                     size="icon"
                     className={cn(
-                        "absolute right-1.5 top-1.5 hidden size-6 rounded-full group-hover:flex",
+                        "absolute right-1.5 top-1.5 size-6 rounded-full lg:hidden lg:group-hover:flex",
                         draggedIndex !== null && "opacity-0",
                     )}
                     onClick={() => onRemoveFile(image)}
