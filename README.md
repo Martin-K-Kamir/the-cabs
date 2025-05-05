@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Cabs
 
-## Getting Started
+**The Cabs** is a small side project I built for learning purposes. It's a cabin rental platform that offers a smooth and intuitive experience for users to explore, book, and manage their cabin stays.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Frontend
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **React**
+- **Next.js**
+- **TypeScript**
+- **TanStack Query**
+- **React Hook Form**
+- **Zustand**
+- **Zod**
+- **Tailwind CSS**
+- **Shadcn UI**
+- **Sonner**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Backend
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Supabase**
+- **Auth.js**
 
-## Learn More
+### Development
 
-To learn more about Next.js, take a look at the following resources:
+- **ESLint**
+- **Prettier**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Note:** This app is not feature-complete. There are many additional improvements and features I could have implemented, but with limited time, I chose to focus on learning and building the core functionality. The goal was to experiment with modern tools and best practices rather than to create a production-ready product.
 
-## Deploy on Vercel
+### Dashboard
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- View cabin listings with details like location, price, avrage rating, date avialbity, carousel images
+- Search and filter cabins by location, date availability, and guest capacity.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Cabin Page
+
+- View detailed information about a specific cabin, including image gallery, amenities, reviews, location, and booking form to check availability and make reservations.
+
+### User Management
+
+- User authentication and authorization using **Authjs**.
+- User profile managment with the ablity to update personal information.
+- User reservation history. Upcoming reservations, past reservations and canceled reservations
+
+## Links
+
+- [Live site](https://the-cabs.vercel.app)
