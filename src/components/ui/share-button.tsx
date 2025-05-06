@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Share2Icon } from "lucide-react";
+import { ShareIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slot } from "@radix-ui/react-slot";
 
@@ -40,7 +40,7 @@ export function ShareButton({
 
     return (
         <Button {...props} variant={variant} size={size} onClick={handleClick}>
-            <Share2Icon className="text-zinc-100" />
+            <ShareIcon className="text-zinc-100" />
             <span className="sr-only">share this page</span>
         </Button>
     );
