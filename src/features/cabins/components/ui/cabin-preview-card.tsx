@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -5,7 +6,7 @@ import { CarouselDots, CarouselItem } from "@/components/ui/carousel";
 import { ImagesGalleryCarousel } from "@/components/ui/images-gallery";
 import { ReviewsSummary } from "@/features/reviews/components/ui/reviews-summary";
 import { BookingPrice } from "@/features/bookings/components/ui/booking-price";
-import { type CabinId } from "@/features/cabins/lib/types";
+import type { CabinId } from "@/features/cabins/lib/types";
 import { cn, formatCompactDateRange } from "@/lib/utils";
 
 export type CabinPreviewCardProps = {
