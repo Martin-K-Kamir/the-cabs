@@ -55,7 +55,7 @@ export function buildQuery(locationIds?: number[], queryParams?: QueryParams) {
         .select(
             "id, createdAt, name, price, discount, maxNumOfGuests, images, locationId, locations(city, country)",
         )
-        .order("createdAt", { ascending: false });
+        .order("createdAt", { ascending: true });
 
     if (locationIds?.length) {
         query = query.in("locationId", locationIds);
