@@ -18,12 +18,13 @@ export default async function Page({ searchParams }: PageProps) {
             className="@container/main flex-1 py-24 lg:py-40"
             as="main"
         >
-            <Suspense
+            {/* <Suspense
                 key={cabinsListKey}
                 fallback={<CabinsPreviewListSkeleton />}
             >
                 <CabinsPreviewList queryParams={{ ...(await searchParams) }} />
-            </Suspense>
+            </Suspense> */}
+            hi
         </Wrapper>
     );
 }
