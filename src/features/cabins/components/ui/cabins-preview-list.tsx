@@ -1,8 +1,8 @@
 import {
-    CabinPreviewCard,
+    // CabinPreviewCard,
     CabinPreviewCardSkeleton,
-    getAllCabinsPreview,
-    getAllCabinsRatings,
+    // getAllCabinsPreview,
+    // getAllCabinsRatings,
 } from "@/features/cabins";
 import { cn } from "@/lib/utils";
 
@@ -17,23 +17,15 @@ export type CabinsPreviewListProps = Omit<
 const cabinsPreviewListClassName =
     "@10xl/cabin-preview-list:grid-cols-6 @8xl/cabin-preview-list:grid-cols-5 @6xl/cabin-preview-list:grid-cols-4 @4xl/cabin-preview-list:grid-cols-3 @xl/cabin-preview-list:grid-cols-2 @2xl/cabin-preview-list:gap-x-8 mx-auto grid gap-x-6 gap-y-10";
 
-export async function CabinsPreviewList({
-    className,
-    classNameList,
-    queryParams,
-    ...props
-}: CabinsPreviewListProps) {
-    const [cabins, reviews] = await Promise.all([
-        await getAllCabinsPreview(queryParams || {}),
-        await getAllCabinsRatings(),
-    ]);
+export async function CabinsPreviewList({ className }: CabinsPreviewListProps) {
+    // const [cabins, reviews] = await Promise.all([
+    //     await getAllCabinsPreview(queryParams || {}),
+    //     await getAllCabinsRatings(),
+    // ]);
 
     return (
-        <div
-            {...props}
-            className={cn("@container/cabin-preview-list", className)}
-        >
-            {cabins.length === 0 && (
+        <div className={cn("@container/cabin-preview-list", className)}>
+            {/* {cabins.length === 0 && (
                 <div className="py-20 text-center text-xl font-semibold text-zinc-50">
                     No cabins found
                 </div>
@@ -56,7 +48,7 @@ export async function CabinsPreviewList({
                         />
                     </li>
                 ))}
-            </ul>
+            </ul> */}
         </div>
     );
 }
