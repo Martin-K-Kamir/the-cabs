@@ -1,9 +1,9 @@
-import { Suspense } from "react";
+// import { Suspense } from "react";
 import { Wrapper } from "@/components/ui/wrapper";
-import {
-    CabinsPreviewList,
-    CabinsPreviewListSkeleton,
-} from "@/features/cabins";
+// import {
+//     CabinsPreviewList,
+//     CabinsPreviewListSkeleton,
+// } from "@/features/cabins";
 
 type PageProps = {
     searchParams: Promise<Record<string, string | undefined>>;
