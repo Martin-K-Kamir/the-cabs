@@ -64,36 +64,6 @@ export function CabinPreviewCard({
                 tabIndex={-1}
             />
 
-            {/* <ImagesGalleryCarousel
-                className="relative aspect-[1.1/1] overflow-hidden rounded-xl transition-[scale] group-hover/cabin-preview:scale-[103%]"
-                classNameButtons="opacity-0 transition-[opacity,scale] hover:scale-105 group-hover/cabin-preview:opacity-100 group-has-[*:focus-visible]/cabin-preview:opacity-100 lg:size-8"
-                images={images}
-                render={(image, index) => (
-                    <CarouselItem
-                        key={image}
-                        className="relative aspect-[1.1/1] overflow-hidden p-0 first:rounded-l-xl last:rounded-r-xl"
-                    >
-                        <Link
-                            href={`/cabins/${id}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="absolute inset-0 rounded-xl outline-none"
-                        >
-                            <Image
-                                fill
-                                src={image}
-                                alt={`Image ${index + 1} of ${images.length} showcasing the ${name}`}
-                                className="object-cover"
-                                priority={true}
-                                sizes="(max-width: 600px) 100vw, 600px"
-                            />
-                        </Link>
-                    </CarouselItem>
-                )}
-            >
-                <CarouselDots tabIndex={-1} />
-            </ImagesGalleryCarousel> */}
-
             <Carousel className="relative aspect-[1.1/1] overflow-hidden rounded-xl transition-[scale] group-hover/cabin-preview:scale-[103%]">
                 <CarouselContent className="relative m-0">
                     {images.map((image, index) => (
@@ -101,26 +71,21 @@ export function CabinPreviewCard({
                             key={image}
                             className="relative aspect-[1.1/1] overflow-hidden p-0 first:rounded-l-xl last:rounded-r-xl"
                         >
-                            <CarouselItem
-                                key={image}
-                                className="relative aspect-[1.1/1] overflow-hidden p-0 first:rounded-l-xl last:rounded-r-xl"
+                            <Link
+                                href={`/cabins/${id}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="absolute inset-0 rounded-xl outline-none"
                             >
-                                <Link
-                                    href={`/cabins/${id}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="absolute inset-0 rounded-xl outline-none"
-                                >
-                                    <Image
-                                        fill
-                                        src={image}
-                                        alt={`Image ${index + 1} of ${images.length} showcasing the ${name}`}
-                                        className="object-cover"
-                                        priority={true}
-                                        sizes="(max-width: 600px) 100vw, 600px"
-                                    />
-                                </Link>
-                            </CarouselItem>
+                                <Image
+                                    fill
+                                    src={image}
+                                    alt={`Image ${index + 1} of ${images.length} showcasing the ${name}`}
+                                    className="object-cover"
+                                    priority={true}
+                                    sizes="(max-width: 600px) 100vw, 600px"
+                                />
+                            </Link>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
