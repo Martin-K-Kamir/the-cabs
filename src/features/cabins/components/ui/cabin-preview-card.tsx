@@ -48,7 +48,7 @@ export function CabinPreviewCard({
         <article
             style={
                 {
-                    "--cabin-preview-index": index,
+                    "--cabin-preview-index": index + 1,
                 } as React.CSSProperties
             }
             className={cn(
@@ -105,7 +105,7 @@ export function CabinPreviewCard({
                                 key={image}
                                 className="relative aspect-[1.1/1] overflow-hidden p-0 first:rounded-l-xl last:rounded-r-xl"
                             >
-                                {/* <Link
+                                <Link
                                     href={`/cabins/${id}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -119,15 +119,7 @@ export function CabinPreviewCard({
                                         priority={true}
                                         sizes="(max-width: 600px) 100vw, 600px"
                                     />
-                                </Link> */}
-                                <Image
-                                    fill
-                                    src={image}
-                                    alt={`Image ${index + 1} of ${images.length} showcasing the ${name}`}
-                                    className="object-cover"
-                                    priority={true}
-                                    sizes="(max-width: 600px) 100vw, 600px"
-                                />
+                                </Link>
                             </CarouselItem>
                         </CarouselItem>
                     ))}
