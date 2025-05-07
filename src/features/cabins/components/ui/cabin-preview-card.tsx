@@ -1,9 +1,8 @@
-"use client";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
-import { CarouselDots, CarouselItem } from "@/components/ui/carousel";
-import { ImagesGalleryCarousel } from "@/components/ui/images-gallery";
+// import { CarouselDots, CarouselItem } from "@/components/ui/carousel";
+// import { ImagesGalleryCarousel } from "@/components/ui/images-gallery";
 import { ReviewsSummary } from "@/features/reviews/components/ui/reviews-summary";
 import { BookingPrice } from "@/features/bookings/components/ui/booking-price";
 import type { CabinId } from "@/features/cabins/lib/types";
@@ -30,7 +29,6 @@ export type CabinPreviewCardProps = {
 export function CabinPreviewCard({
     id,
     name,
-    images,
     price,
     discount,
     className,
@@ -59,7 +57,7 @@ export function CabinPreviewCard({
                 tabIndex={-1}
             />
 
-            <ImagesGalleryCarousel
+            {/* <ImagesGalleryCarousel
                 className="relative aspect-[1.1/1] overflow-hidden rounded-xl transition-[scale] group-hover/cabin-preview:scale-[103%]"
                 classNameButtons="opacity-0 transition-[opacity,scale] hover:scale-105 group-hover/cabin-preview:opacity-100 group-has-[*:focus-visible]/cabin-preview:opacity-100 lg:size-8"
                 images={images}
@@ -87,7 +85,7 @@ export function CabinPreviewCard({
                 )}
             >
                 <CarouselDots tabIndex={-1} />
-            </ImagesGalleryCarousel>
+            </ImagesGalleryCarousel> */}
 
             <section className="mt-2">
                 <header className="flex items-center justify-between">
