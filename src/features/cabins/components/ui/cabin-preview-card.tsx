@@ -1,4 +1,4 @@
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ReviewsSummary } from "@/features/reviews/components/ui/reviews-summary";
@@ -96,7 +96,7 @@ export function CabinPreviewCard({
 
             <Carousel className="relative aspect-[1.1/1] overflow-hidden rounded-xl transition-[scale] group-hover/cabin-preview:scale-[103%]">
                 <CarouselContent className="relative m-0">
-                    {images.map(image => (
+                    {images.map((image, index) => (
                         <CarouselItem
                             key={image}
                             className="relative aspect-[1.1/1] overflow-hidden p-0 first:rounded-l-xl last:rounded-r-xl"
@@ -120,7 +120,14 @@ export function CabinPreviewCard({
                                         sizes="(max-width: 600px) 100vw, 600px"
                                     />
                                 </Link> */}
-                                hi
+                                <Image
+                                    fill
+                                    src={image}
+                                    alt={`Image ${index + 1} of ${images.length} showcasing the ${name}`}
+                                    className="object-cover"
+                                    priority={true}
+                                    sizes="(max-width: 600px) 100vw, 600px"
+                                />
                             </CarouselItem>
                         </CarouselItem>
                     ))}
