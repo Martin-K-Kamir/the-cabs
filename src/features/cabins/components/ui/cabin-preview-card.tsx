@@ -1,6 +1,4 @@
-"use client";
 import Image from "next/image";
-import { useId } from "react";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CarouselDots, CarouselItem } from "@/components/ui/carousel";
@@ -40,8 +38,6 @@ export function CabinPreviewCard({
     nextAvailableDate,
     index = 0,
 }: CabinPreviewCardProps) {
-    const cabinCardId = useId();
-
     return (
         <article
             style={
@@ -58,7 +54,6 @@ export function CabinPreviewCard({
                 href={`/cabins/${id}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-labelledby={`cabin-card-title-${cabinCardId}`}
                 className="absolute inset-0 rounded-xl outline-none"
                 tabIndex={-1}
             />
@@ -76,7 +71,6 @@ export function CabinPreviewCard({
                             href={`/cabins/${id}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-labelledby={`cabin-card-title-${cabinCardId}`}
                             className="absolute inset-0 rounded-xl outline-none"
                         >
                             <Image
@@ -96,12 +90,7 @@ export function CabinPreviewCard({
 
             <section className="mt-2">
                 <header className="flex items-center justify-between">
-                    <h3
-                        className="font-semibold"
-                        id={`cabin-card-title-${cabinCardId}`}
-                    >
-                        {name}
-                    </h3>
+                    <h3 className="font-semibold">{name}</h3>
                     {ratings && (
                         <ReviewsSummary
                             data={ratings}

@@ -1,5 +1,5 @@
 import {
-    // CabinPreviewCard,
+    CabinPreviewCard,
     CabinPreviewCardSkeleton,
     getAllCabinsPreview,
     getAllCabinsRatings,
@@ -41,7 +41,7 @@ export async function CabinsPreviewList({
             <ul className={cn(cabinsPreviewListClassName, classNameList)}>
                 {cabins?.map((cabin, index) => (
                     <li key={cabin.id}>
-                        {/* <CabinPreviewCard
+                        <CabinPreviewCard
                             id={cabin.id}
                             name={cabin.name}
                             images={cabin.images}
@@ -53,10 +53,7 @@ export async function CabinsPreviewList({
                             ratings={ratings.filter(
                                 review => review.cabinId === cabin.id,
                             )}
-                        /> */}
-                        <div>
-                            {cabin.name} {index} {ratings.length}
-                        </div>
+                        />
                     </li>
                 ))}
             </ul>
