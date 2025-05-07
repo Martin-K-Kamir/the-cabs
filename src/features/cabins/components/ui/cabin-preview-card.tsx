@@ -82,7 +82,7 @@ export function CabinPreviewCard({
                                     src={image}
                                     alt={`Image ${index + 1} of ${images.length} showcasing the ${name}`}
                                     className="object-cover"
-                                    priority={true}
+                                    priority={index === 0}
                                     sizes="(max-width: 600px) 100vw, 600px"
                                 />
                             </Link>
