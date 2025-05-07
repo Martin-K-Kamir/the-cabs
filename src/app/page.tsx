@@ -5,12 +5,12 @@ import { Wrapper } from "@/components/ui/wrapper";
 //     CabinsPreviewListSkeleton,
 // } from "@/features/cabins";
 
-type PageProps = {
-    searchParams: Promise<Record<string, string | undefined>>;
-};
+// type PageProps = {
+//     searchParams: Promise<Record<string, string | undefined>>;
+// };
 
-export default async function Page({ searchParams }: PageProps) {
-    const { ["cabins-list-key"]: cabinsListKey } = await searchParams;
+export default async function Page() {
+    // const { ["cabins-list-key"]: cabinsListKey } = await searchParams;
 
     return (
         <Wrapper
