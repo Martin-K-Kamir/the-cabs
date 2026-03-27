@@ -32,8 +32,6 @@ export default async function Page() {
                 />
             )}
 
-            <p>test chunk error</p>
-
             {groupedBookings.past.length > 0 && (
                 <section className="space-y-4">
                     <h2 className="text-lg font-semibold">Where you been</h2>
