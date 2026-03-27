@@ -96,7 +96,6 @@ export default async function Page({ params }: PageProps) {
             <Suspense>
                 <CabinImagesGallery images={images} name={name} />
             </Suspense>
-            <p>test chunk error</p>
 
             <div className="mt-6 grid sm:mt-8 sm:gap-6 lg:grid-cols-[1.7fr_1fr]">
                 <main className="@container/main space-y-10">
